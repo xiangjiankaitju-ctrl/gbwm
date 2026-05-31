@@ -17,6 +17,13 @@ from gbwm.dp_baseline import default_z_grid
 from gbwm.metrics import evaluate_policies, evaluation_summary
 from gbwm.paper_cases import paper_case_specs, scenario_from_case_spec
 from gbwm.policies import DPGridPolicy, MetaRLPolicy
+from gbwm.reproduction import (
+    FORMAL_CHECKPOINT_MODE,
+    FORMAL_MC_PATHS,
+    resolve_checkpoint_paths,
+    validate_baseline_frontier_artifacts,
+    validate_checkpoint_metadata,
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -24,7 +31,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--mode", choices=("quick", "calibration"), default="quick", help="Run one DP config or a DP sensitivity calibration.")
     parser.add_argument("--grid-size", type=int, default=91, help="Number of wealth-grid points for DP.")
     parser.add_argument("--z-nodes", type=int, default=7, help="Number of deterministic normal midpoint nodes for DP.")
-    parser.add_argument("--mc-paths", type=int, default=10000, help="Monte Carlo paths per case.")
+    parser.add_argument("--mc-paths", type=int, default=FORMAL_MC_PATHS, help="Monte Carlo paths per case.")
     parser.add_argument("--seed", type=int, default=260502300, help="Random seed for Monte Carlo paths.")
     parser.add_argument("--output-dir", default=str(ROOT / "outputs" / "tables"), help="Directory for JSON and CSV outputs.")
     parser.add_argument("--calibration-configs", default="51:5,91:7,151:11", help="Comma-separated grid:z pairs used in calibration mode.")
@@ -32,6 +39,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--frontier-source", choices=("baseline", "simulated"), default="baseline")
     parser.add_argument("--checkpoint-dir", default=str(ROOT / "outputs" / "checkpoints"), help="Directory containing MetaRL seed checkpoints.")
     parser.add_argument("--checkpoint-paths", default="", help="Optional comma-separated checkpoint paths. Overrides --checkpoint-dir.")
+    parser.add_argument("--checkpoint-mode", choices=("smoke", "mini", "paper-like"), default=FORMAL_CHECKPOINT_MODE)
     parser.add_argument("--device", default="cpu", help="Torch device for MetaRL inference.")
     parser.add_argument("--stable-threshold", type=float, default=0.03, help="Relative DP utility spread considered stable.")
     parser.add_argument("--mild-threshold", type=float, default=0.07, help="Relative DP utility spread considered mildly sensitive.")
@@ -40,13 +48,11 @@ def parse_args() -> argparse.Namespace:
 
 
 def checkpoint_paths(args: argparse.Namespace) -> list[Path]:
-    if args.checkpoint_paths.strip():
-        paths = [Path(chunk.strip()) for chunk in args.checkpoint_paths.split(",") if chunk.strip()]
-    else:
-        paths = sorted(Path(args.checkpoint_dir).glob("*.pt"))
-    if not paths:
-        raise ValueError("No MetaRL checkpoints found. Run experiments/01_train_metarl.py first.")
-    return paths
+    return resolve_checkpoint_paths(
+        checkpoint_dir=args.checkpoint_dir,
+        checkpoint_paths=args.checkpoint_paths,
+        mode=args.checkpoint_mode,
+    )
 
 
 def selected_specs(args: argparse.Namespace) -> list[dict]:
@@ -181,7 +187,15 @@ def evaluate_one_config(scenario, wealth_grid: np.ndarray, z_nodes_count: int, z
 
 def run_quick(args: argparse.Namespace) -> dict:
     specs = selected_specs(args)
-    metarl_policy = MetaRLPolicy(checkpoint_paths(args), device=args.device)
+    paths = checkpoint_paths(args)
+    frontier_info = validate_baseline_frontier_artifacts() if args.frontier_source == "baseline" else None
+    checkpoint_info = validate_checkpoint_metadata(
+        paths,
+        mode=args.checkpoint_mode,
+        frontier_hash=frontier_info["frontier_hash"] if frontier_info else None,
+        device=args.device,
+    )
+    metarl_policy = MetaRLPolicy(paths, device=args.device)
     rng = np.random.default_rng(args.seed)
     rows = []
     suite_start = time.perf_counter()
@@ -216,7 +230,11 @@ def run_quick(args: argparse.Namespace) -> dict:
         "grid_size": args.grid_size,
         "mc_paths": args.mc_paths,
         "frontier_source": args.frontier_source,
-        "checkpoint_count": len(checkpoint_paths(args)),
+        "frontier_status": frontier_info["frontier_status"] if frontier_info else "explicit_simulated",
+        "frontier": frontier_info,
+        "checkpoint_count": len(paths),
+        "checkpoint_mode": args.checkpoint_mode,
+        "checkpoint_seeds": checkpoint_info["seeds"],
         "seed": args.seed,
         "z_nodes": args.z_nodes,
         "suite_seconds": time.perf_counter() - suite_start,
@@ -236,7 +254,15 @@ def run_quick(args: argparse.Namespace) -> dict:
 def run_calibration(args: argparse.Namespace) -> dict:
     specs = selected_specs(args)
     configs = parse_calibration_configs(args.calibration_configs)
-    metarl_policy = MetaRLPolicy(checkpoint_paths(args), device=args.device)
+    paths = checkpoint_paths(args)
+    frontier_info = validate_baseline_frontier_artifacts() if args.frontier_source == "baseline" else None
+    checkpoint_info = validate_checkpoint_metadata(
+        paths,
+        mode=args.checkpoint_mode,
+        frontier_hash=frontier_info["frontier_hash"] if frontier_info else None,
+        device=args.device,
+    )
+    metarl_policy = MetaRLPolicy(paths, device=args.device)
     rng = np.random.default_rng(args.seed)
     rows = []
     detail_rows = []
@@ -297,7 +323,11 @@ def run_calibration(args: argparse.Namespace) -> dict:
         "passed_cases": len(passed_rows),
         "mc_paths": args.mc_paths,
         "frontier_source": args.frontier_source,
-        "checkpoint_count": len(checkpoint_paths(args)),
+        "frontier_status": frontier_info["frontier_status"] if frontier_info else "explicit_simulated",
+        "frontier": frontier_info,
+        "checkpoint_count": len(paths),
+        "checkpoint_mode": args.checkpoint_mode,
+        "checkpoint_seeds": checkpoint_info["seeds"],
         "seed": args.seed,
         "suite_seconds": time.perf_counter() - suite_start,
         "stable_threshold": args.stable_threshold,

@@ -16,6 +16,12 @@ sys.path.insert(0, str(ROOT / "src"))
 from gbwm.dp_baseline import default_z_grid, solve_dp
 from gbwm.paper_cases import paper_case_specs, scenario_from_case_spec
 from gbwm.policies import DPGridPolicy, MetaRLPolicy
+from gbwm.reproduction import (
+    FORMAL_CHECKPOINT_MODE,
+    resolve_checkpoint_paths,
+    validate_baseline_frontier_artifacts,
+    validate_checkpoint_metadata,
+)
 
 
 def load_eval_module():
@@ -36,19 +42,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--frontier-source", choices=("baseline", "simulated"), default="baseline")
     parser.add_argument("--checkpoint-dir", default=str(ROOT / "outputs" / "checkpoints"))
     parser.add_argument("--checkpoint-paths", default="")
+    parser.add_argument("--checkpoint-mode", choices=("smoke", "mini", "paper-like"), default=FORMAL_CHECKPOINT_MODE)
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--output-dir", default=str(ROOT / "outputs" / "heatmaps"))
     return parser.parse_args()
 
 
 def checkpoint_paths(args: argparse.Namespace) -> list[Path]:
-    if args.checkpoint_paths.strip():
-        paths = [Path(chunk.strip()) for chunk in args.checkpoint_paths.split(",") if chunk.strip()]
-    else:
-        paths = sorted(Path(args.checkpoint_dir).glob("*.pt"))
-    if not paths:
-        raise ValueError("No MetaRL checkpoints found. Run experiments/01_train_metarl.py first.")
-    return paths
+    return resolve_checkpoint_paths(
+        checkpoint_dir=args.checkpoint_dir,
+        checkpoint_paths=args.checkpoint_paths,
+        mode=args.checkpoint_mode,
+    )
 
 
 def selected_specs(case_ids_raw: str) -> list[dict]:
@@ -71,7 +76,15 @@ def export_rows(path: Path, rows: list[dict]) -> None:
 def main() -> None:
     args = parse_args()
     eval_module = load_eval_module()
-    metarl_policy = MetaRLPolicy(checkpoint_paths(args), device=args.device)
+    paths = checkpoint_paths(args)
+    frontier_info = validate_baseline_frontier_artifacts() if args.frontier_source == "baseline" else None
+    checkpoint_info = validate_checkpoint_metadata(
+        paths,
+        mode=args.checkpoint_mode,
+        frontier_hash=frontier_info["frontier_hash"] if frontier_info else None,
+        device=args.device,
+    )
+    metarl_policy = MetaRLPolicy(paths, device=args.device)
 
     z_nodes, z_weights = default_z_grid(args.z_nodes)
     output_dir = Path(args.output_dir)
@@ -81,7 +94,11 @@ def main() -> None:
         "z_nodes": args.z_nodes,
         "policies": ["dp", "metarl"],
         "frontier_source": args.frontier_source,
-        "checkpoint_count": len(checkpoint_paths(args)),
+        "frontier_status": frontier_info["frontier_status"] if frontier_info else "explicit_simulated",
+        "frontier": frontier_info,
+        "checkpoint_count": len(paths),
+        "checkpoint_mode": args.checkpoint_mode,
+        "checkpoint_seeds": checkpoint_info["seeds"],
         "files": [],
     }
     start = time.perf_counter()

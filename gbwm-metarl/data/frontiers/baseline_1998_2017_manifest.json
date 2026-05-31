@@ -1,0 +1,25 @@
+{
+  "assets": [
+    "VTSMX",
+    "VTBIX",
+    "VGTSX"
+  ],
+  "frontier_csv": "C:\\Users\\xiangjiankai\\Desktop\\GBWM\\gbwm-metarl\\data\\frontiers\\baseline_1998_2017.csv",
+  "frontier_hash": "2d8532995f1c9b6a3053e619bd15138f2b6036c3874f0bbd950fb6a7b18c8f78",
+  "frontier_status": "synthetic_baseline_frontier",
+  "numeric_status": "synthetic_baseline_frontier",
+  "portfolio_count": 15,
+  "source_meta": {
+    "formula": {
+      "mu": "0.018 + 0.075 * x**0.85",
+      "sigma": "0.035 + 0.215 * x",
+      "target_return": "mu",
+      "w_VGTSX": "0",
+      "w_VTBIX": "1 - x",
+      "w_VTSMX": "x",
+      "x": "i / (P - 1), i=0..P-1"
+    },
+    "warning": "deterministic synthetic baseline frontier; not a true NAV-based paper numeric reproduction"
+  },
+  "source_mode": "simulated"
+}

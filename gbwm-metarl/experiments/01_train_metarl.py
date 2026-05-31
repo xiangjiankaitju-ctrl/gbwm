@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from gbwm.efficient_frontier import baseline_efficient_frontier_spec, simulated_efficient_frontier_spec  # noqa: E402
 from gbwm.ppo import PPOConfig, PPOTrainer  # noqa: E402
+from gbwm.reproduction import validate_baseline_frontier_artifacts  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -31,8 +32,14 @@ def main() -> None:
         if args.frontier_source == "baseline"
         else simulated_efficient_frontier_spec()
     )
+    if args.frontier_source == "baseline":
+        validate_baseline_frontier_artifacts(frontier_csv=args.frontier_csv)
     trainer = PPOTrainer(spec.mu, spec.sigma, config=config, frontier_hash=spec.frontier_hash)
     result = trainer.train()
+    Path(args.checkpoint_dir).mkdir(parents=True, exist_ok=True)
+    summary_path = Path(args.checkpoint_dir) / f"training_summary_{args.mode}.json"
+    with summary_path.open("w", encoding="utf-8") as handle:
+        json.dump(result, handle, indent=2, sort_keys=True)
     print(json.dumps(result, indent=2, sort_keys=True))
 
 

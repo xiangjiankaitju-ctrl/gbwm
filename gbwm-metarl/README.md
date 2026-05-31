@@ -1,17 +1,49 @@
-# GBWM MetaRL Reproduction
+# GBWM MetaRL Mainline Reproduction
 
 This project reproduces the all-or-nothing GBWM MetaRL algorithm from
 *A Meta Reinforcement Learning Approach to Goals-Based Wealth Management*.
 
-The formal path is:
+Scope is intentionally limited to the paper's main all-or-nothing pipeline. The
+extension experiments are not part of the completion target.
+
+The formal single-phase path is:
 
 1. Build the baseline efficient frontier from user-supplied monthly NAV data.
 2. Train the dual PPO MetaRL agents in a torch environment, such as Colab.
 3. Evaluate the 66 paper cases with DP and MetaRL on shared Monte Carlo paths.
+4. Export case 20/57 DP-vs-MetaRL policy-grid data.
 
-Synthetic frontier and heuristic policies are debug-only helpers. They are not
-used as formal reproduction outputs unless explicitly requested by command-line
-flags that mark them as simulated/debug provenance.
+Synthetic frontier and heuristic policies are clearly marked in output
+provenance. The current runnable mainline uses a deterministic synthetic
+baseline frontier when raw NAV data is unavailable.
+
+## Synthetic Baseline
+
+Build the synthetic baseline frontier:
+
+```bash
+python experiments/00_build_frontier.py --frontier-source simulated
+```
+
+This writes `data/frontiers/baseline_1998_2017.csv` with 15 portfolio points and
+marks the manifest as `synthetic_baseline_frontier`. Results from this path are
+synthetic-baseline experiments, not true NAV-based paper numeric reproduction.
+
+## One Command
+
+After the synthetic baseline is built and torch is installed, the mainline run is:
+
+```bash
+python experiments/08_run_mainline_reproduction.py --device cuda
+```
+
+The script runs local checks, builds the baseline frontier, trains the 5-seed
+paper-like PPO preset, evaluates 66 cases with 10,000 Monte Carlo paths, and
+exports case 20/57 heatmap data. If paper-like checkpoints already exist:
+
+```bash
+python experiments/08_run_mainline_reproduction.py --skip-training --device cuda
+```
 
 ## Frontier
 
@@ -29,7 +61,7 @@ Build the paper baseline frontier:
 & 'C:\Users\xiangjiankai\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' experiments\00_build_frontier.py --frontier-source csv
 ```
 
-For local smoke/debug only:
+Build the synthetic baseline frontier:
 
 ```powershell
 & 'C:\Users\xiangjiankai\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' experiments\00_build_frontier.py --frontier-source simulated
@@ -46,6 +78,8 @@ python experiments/01_train_metarl.py --mode paper-like --frontier-source baseli
 
 The paper-like preset uses seeds `0,15,722,1021,5069` and
 `1000 epochs * 500 episodes/epoch`.
+The formal evaluator defaults to this exact checkpoint set:
+`outputs/checkpoints/metarl_paper-like_seed_*.pt`.
 
 ## Evaluation
 

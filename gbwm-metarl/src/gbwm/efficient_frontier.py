@@ -19,6 +19,9 @@ ASSET_COLUMNS = ("VTSMX", "VTBIX", "VGTSX")
 DEFAULT_RAW_FRONTIER_CSV = Path("data/raw/frontier_nav_monthly.csv")
 DEFAULT_BASELINE_FRONTIER_CSV = Path("data/frontiers/baseline_1998_2017.csv")
 DEFAULT_BASELINE_MANIFEST = Path("data/frontiers/baseline_1998_2017_manifest.json")
+PAPER_FRONTIER_STATUS = "paper_reproduction_frontier"
+SYNTHETIC_BASELINE_STATUS = "synthetic_baseline_frontier"
+DEBUG_FRONTIER_STATUS = "debug_not_paper_reproduction"
 
 
 class FrontierDataError(RuntimeError):
@@ -159,7 +162,7 @@ def simulated_efficient_frontier_spec(P: int = 15) -> FrontierSpec:
         weights=weights,
         target_return=mu.copy(),
         source="explicit deterministic simulated frontier",
-        numeric_status="debug_not_paper_reproduction",
+        numeric_status=DEBUG_FRONTIER_STATUS,
         notes="Use only when --frontier-source simulated is explicitly selected.",
         frontier_hash=_frontier_hash(rows),
     )
@@ -304,12 +307,19 @@ def write_frontier_files(
         writer.writeheader()
         writer.writerows(rows)
 
-    digest = _frontier_hash(rows)
+    _written_mu, _written_sigma, _written_weights, _written_targets, digest = _read_frontier_csv(output)
+    status_by_mode = {
+        "csv": PAPER_FRONTIER_STATUS,
+        "simulated": SYNTHETIC_BASELINE_STATUS,
+    }
+    if source_mode not in status_by_mode:
+        raise ValueError(f"Unsupported frontier source_mode: {source_mode}")
     manifest_payload = {
         "frontier_csv": str(output),
         "frontier_hash": digest,
         "source_mode": source_mode,
-        "numeric_status": "paper_reproduction_frontier" if source_mode == "csv" else "debug_not_paper_reproduction",
+        "frontier_status": status_by_mode[source_mode],
+        "numeric_status": status_by_mode[source_mode],
         "source_meta": source_meta or {},
         "assets": list(ASSET_COLUMNS),
         "portfolio_count": int(mu.shape[0]),
@@ -318,7 +328,7 @@ def write_frontier_files(
     with manifest.open("w", encoding="utf-8") as handle:
         json.dump(manifest_payload, handle, indent=2, sort_keys=True)
     return FrontierSpec(
-        name="baseline_1998_2017" if source_mode == "csv" else "simulated_debug",
+        name="baseline_1998_2017" if source_mode == "csv" else "synthetic_baseline_1998_2017",
         mu=mu,
         sigma=sigma,
         weights=weights,
@@ -368,5 +378,16 @@ def build_simulated_frontier_files(
         source_mode="simulated",
         output_csv=output_csv,
         manifest_path=manifest_path,
-        source_meta={"warning": "explicit simulated debug frontier; not a paper numeric reproduction"},
+        source_meta={
+            "warning": "deterministic synthetic baseline frontier; not a true NAV-based paper numeric reproduction",
+            "formula": {
+                "x": "i / (P - 1), i=0..P-1",
+                "sigma": "0.035 + 0.215 * x",
+                "mu": "0.018 + 0.075 * x**0.85",
+                "target_return": "mu",
+                "w_VTSMX": "x",
+                "w_VTBIX": "1 - x",
+                "w_VGTSX": "0",
+            },
+        },
     )

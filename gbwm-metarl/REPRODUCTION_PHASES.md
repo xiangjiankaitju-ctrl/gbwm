@@ -1,31 +1,38 @@
-# Reproduction Tracker
+# Single-Phase Reproduction Tracker
 
-## Phase 1: All-or-Nothing GBWM MetaRL
-
-Goal: reproduce the paper's main all-or-nothing pipeline with a strict frontier,
-dual PPO training, DP comparison, Table 1/Table 2 style outputs, and case 20/57
-policy-grid data.
+Goal: run the paper's main all-or-nothing pipeline with a deterministic
+synthetic baseline frontier, dual PPO training, DP comparison, Table 1/Table 2
+style outputs, and case 20/57 policy-grid data.
 
 Current status:
 
 - Done: GBWM environment, 26-dimensional Appendix A state, 66 Appendix C cases.
 - Done: DP baseline and Monte Carlo policy evaluator.
 - Done: strict frontier builder from `data/raw/frontier_nav_monthly.csv`.
-- Done: explicit simulated frontier path for local debug only.
+- Done: synthetic baseline builder for `data/frontiers/baseline_1998_2017.csv`.
 - Done: torch-gated dual PPO implementation and checkpoint loader.
 - Done: evaluation scripts now target DP vs MetaRL rather than greedy results.
-- Pending: user NAV CSV for strict numeric frontier reproduction.
+- Done: formal gates require the full paper-like checkpoint set by default.
+- Done: `experiments/08_run_mainline_reproduction.py` encodes the one-phase run.
+- Done: synthetic baseline frontier CSV and manifest can be used for baseline training.
 - Pending: Colab torch run for PPO smoke, mini, and paper-like training.
 
 Next concrete gates:
 
-1. Provide `data/raw/frontier_nav_monthly.csv`.
-2. Run `experiments/00_build_frontier.py --frontier-source csv`.
-3. In Colab, install `requirements-colab.txt` and run PPO smoke.
+1. Run `experiments/00_build_frontier.py --frontier-source simulated`.
+2. In Colab, install `requirements-colab.txt` and run smoke then mini PPO training.
+3. Run paper-like PPO training.
 4. Run 66-case evaluation with trained checkpoints and 10,000 MC paths.
+5. Export case 20/57 DP-vs-MetaRL heatmap data.
 
-## Phase 2: Extensions
+Completion command:
 
-Partial goals, concurrent goals, stochastic inflation, and robustness frontiers
-remain out of scope until Phase 1 has trained MetaRL checkpoints and formal
-DP-vs-MetaRL outputs.
+```bash
+python experiments/08_run_mainline_reproduction.py --device cuda
+```
+
+Out of scope: concurrent goals, partial goals, stochastic inflation, and
+frontier robustness.
+
+Note: synthetic-baseline outputs are not true NAV-based paper numeric
+reproduction, and reports must keep `frontier_status=synthetic_baseline_frontier`.

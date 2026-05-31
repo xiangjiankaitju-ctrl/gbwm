@@ -16,12 +16,20 @@ from gbwm.efficient_frontier import (
     FrontierDataError,
     baseline_efficient_frontier,
     build_frontier_from_nav_csv,
+    build_simulated_frontier_files,
     markowitz_frontier,
     simulated_efficient_frontier,
     simulated_efficient_frontier_spec,
 )
 from gbwm.environment import GBWMEnv, goal_decision, portfolio_decision
 from gbwm.paper_cases import load_case_specs, paper_case_specs, scenario_from_case_spec
+from gbwm.reproduction import (
+    ReproductionGateError,
+    checkpoint_filename,
+    expected_checkpoint_paths,
+    resolve_checkpoint_paths,
+    validate_baseline_frontier_artifacts,
+)
 from gbwm.scenario import Scenario
 from gbwm.scenario_generation import generate_training_scenario
 from gbwm.state_features import build_state
@@ -203,6 +211,39 @@ class FrontierTests(unittest.TestCase):
             self.assertEqual(spec.mu.shape, (15,))
             self.assertEqual(spec.weights.shape, (15, 3))
             self.assertEqual(spec.numeric_status, "paper_reproduction_frontier")
+
+    def test_build_simulated_frontier_files_marks_synthetic_baseline(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            spec = build_simulated_frontier_files(
+                P=15,
+                output_csv=tmp_path / "baseline_1998_2017.csv",
+                manifest_path=tmp_path / "baseline_1998_2017_manifest.json",
+            )
+            self.assertEqual(spec.mu.shape, (15,))
+            self.assertEqual(spec.numeric_status, "synthetic_baseline_frontier")
+            info = validate_baseline_frontier_artifacts(
+                frontier_csv=tmp_path / "baseline_1998_2017.csv",
+                manifest_path=tmp_path / "baseline_1998_2017_manifest.json",
+            )
+            self.assertEqual(info["frontier_status"], "synthetic_baseline_frontier")
+
+
+class ReproductionGateTests(unittest.TestCase):
+    def test_expected_paper_like_checkpoint_set_is_fixed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            checkpoint_dir = Path(tmp)
+            for path in expected_checkpoint_paths(checkpoint_dir, mode="paper-like"):
+                path.write_bytes(b"placeholder")
+            paths = resolve_checkpoint_paths(checkpoint_dir=checkpoint_dir, mode="paper-like")
+            self.assertEqual([path.name for path in paths], [checkpoint_filename("paper-like", seed) for seed in (0, 15, 722, 1021, 5069)])
+
+    def test_incomplete_checkpoint_set_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            checkpoint_dir = Path(tmp)
+            (checkpoint_dir / checkpoint_filename("paper-like", 0)).write_bytes(b"placeholder")
+            with self.assertRaises(ReproductionGateError):
+                resolve_checkpoint_paths(checkpoint_dir=checkpoint_dir, mode="paper-like")
 
 
 class PPOGateTests(unittest.TestCase):
