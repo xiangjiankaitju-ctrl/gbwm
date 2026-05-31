@@ -1,0 +1,608 @@
+{
+  "evaluated_cases": 66,
+  "greedy_efficiency_max": 0.9620390455531452,
+  "greedy_efficiency_mean": 0.54460127678908,
+  "greedy_efficiency_min": 0.0,
+  "grid_size": 51,
+  "mc_paths": 100,
+  "output_dir": "C:\\Users\\xiangjiankai\\Desktop\\GBWM\\gbwm-metarl\\outputs\\tables",
+  "rows": [
+    {
+      "T": 10,
+      "case_id": 1,
+      "dp_mean_utility": 0.7,
+      "dp_seconds": 0.025580399902537465,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.7428571428571429,
+      "greedy_mean_utility": 0.52
+    },
+    {
+      "T": 10,
+      "case_id": 2,
+      "dp_mean_utility": 0.49,
+      "dp_seconds": 0.02110799984075129,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.46938775510204084,
+      "greedy_mean_utility": 0.23
+    },
+    {
+      "T": 10,
+      "case_id": 3,
+      "dp_mean_utility": 0.16,
+      "dp_seconds": 0.020783200161531568,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.0625,
+      "greedy_mean_utility": 0.01
+    },
+    {
+      "T": 40,
+      "case_id": 4,
+      "dp_mean_utility": 0.75,
+      "dp_seconds": 0.14489599992521107,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.6666666666666666,
+      "greedy_mean_utility": 0.5
+    },
+    {
+      "T": 40,
+      "case_id": 5,
+      "dp_mean_utility": 0.61,
+      "dp_seconds": 0.15146950003691018,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.5573770491803279,
+      "greedy_mean_utility": 0.34
+    },
+    {
+      "T": 40,
+      "case_id": 6,
+      "dp_mean_utility": 0.37,
+      "dp_seconds": 0.14934020000509918,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.24324324324324323,
+      "greedy_mean_utility": 0.09
+    },
+    {
+      "T": 100,
+      "case_id": 7,
+      "dp_mean_utility": 0.6,
+      "dp_seconds": 0.37762339995242655,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.2833333333333334,
+      "greedy_mean_utility": 0.17
+    },
+    {
+      "T": 100,
+      "case_id": 8,
+      "dp_mean_utility": 0.14,
+      "dp_seconds": 0.3715841001830995,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.0,
+      "greedy_mean_utility": 0.0
+    },
+    {
+      "T": 100,
+      "case_id": 9,
+      "dp_mean_utility": 0.0,
+      "dp_seconds": 0.3736608000472188,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": NaN,
+      "greedy_mean_utility": 0.0
+    },
+    {
+      "T": 3,
+      "case_id": 10,
+      "dp_mean_utility": 0.9800000000000001,
+      "dp_seconds": 0.00659139989875257,
+      "goals": 2,
+      "greedy_efficiency_vs_dp": 0.9091836734693881,
+      "greedy_mean_utility": 0.8910000000000005
+    },
+    {
+      "T": 20,
+      "case_id": 11,
+      "dp_mean_utility": 0.873,
+      "dp_seconds": 0.07369649992324412,
+      "goals": 2,
+      "greedy_efficiency_vs_dp": 0.43298969072164945,
+      "greedy_mean_utility": 0.37799999999999995
+    },
+    {
+      "T": 20,
+      "case_id": 12,
+      "dp_mean_utility": 1.074,
+      "dp_seconds": 0.07248570001684129,
+      "goals": 2,
+      "greedy_efficiency_vs_dp": 0.6806331471135941,
+      "greedy_mean_utility": 0.7310000000000001
+    },
+    {
+      "T": 35,
+      "case_id": 13,
+      "dp_mean_utility": 1.465,
+      "dp_seconds": 0.13239649985916913,
+      "goals": 3,
+      "greedy_efficiency_vs_dp": 0.7440273037542662,
+      "greedy_mean_utility": 1.09
+    },
+    {
+      "T": 60,
+      "case_id": 14,
+      "dp_mean_utility": 0.636,
+      "dp_seconds": 0.2343071000650525,
+      "goals": 4,
+      "greedy_efficiency_vs_dp": 0.40723270440251563,
+      "greedy_mean_utility": 0.25899999999999995
+    },
+    {
+      "T": 25,
+      "case_id": 15,
+      "dp_mean_utility": 0.643,
+      "dp_seconds": 0.10288859996944666,
+      "goals": 4,
+      "greedy_efficiency_vs_dp": 0.7776049766718507,
+      "greedy_mean_utility": 0.5
+    },
+    {
+      "T": 40,
+      "case_id": 16,
+      "dp_mean_utility": 1.91,
+      "dp_seconds": 0.15352920000441372,
+      "goals": 4,
+      "greedy_efficiency_vs_dp": 0.6151832460732984,
+      "greedy_mean_utility": 1.175
+    },
+    {
+      "T": 20,
+      "case_id": 17,
+      "dp_mean_utility": 9.22,
+      "dp_seconds": 0.2574458001181483,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.9620390455531452,
+      "greedy_mean_utility": 8.87
+    },
+    {
+      "T": 20,
+      "case_id": 18,
+      "dp_mean_utility": 6.89,
+      "dp_seconds": 0.2508435999043286,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.7518142235123367,
+      "greedy_mean_utility": 5.18
+    },
+    {
+      "T": 20,
+      "case_id": 19,
+      "dp_mean_utility": 4.85,
+      "dp_seconds": 0.40653249993920326,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.5113402061855671,
+      "greedy_mean_utility": 2.48
+    },
+    {
+      "T": 20,
+      "case_id": 20,
+      "dp_mean_utility": 3.48,
+      "dp_seconds": 0.3998376000672579,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.4367816091954023,
+      "greedy_mean_utility": 1.52
+    },
+    {
+      "T": 60,
+      "case_id": 21,
+      "dp_mean_utility": 38.24,
+      "dp_seconds": 1.6674010001588613,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.16631799163179917,
+      "greedy_mean_utility": 6.36
+    },
+    {
+      "T": 60,
+      "case_id": 22,
+      "dp_mean_utility": 36.08,
+      "dp_seconds": 3.1330820000730455,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.5385254988913526,
+      "greedy_mean_utility": 19.43
+    },
+    {
+      "T": 60,
+      "case_id": 23,
+      "dp_mean_utility": 4719.1,
+      "dp_seconds": 3.1226011998951435,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.4779640185628615,
+      "greedy_mean_utility": 2255.56
+    },
+    {
+      "T": 60,
+      "case_id": 24,
+      "dp_mean_utility": 2482.31,
+      "dp_seconds": 3.1993112000636756,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.72214993292538,
+      "greedy_mean_utility": 1792.6
+    },
+    {
+      "T": 60,
+      "case_id": 25,
+      "dp_mean_utility": 30.86,
+      "dp_seconds": 3.2088154000230134,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.09170447180816592,
+      "greedy_mean_utility": 2.83
+    },
+    {
+      "T": 60,
+      "case_id": 26,
+      "dp_mean_utility": 3999.05,
+      "dp_seconds": 2.758511699968949,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.08172440954726747,
+      "greedy_mean_utility": 326.82
+    },
+    {
+      "T": 60,
+      "case_id": 27,
+      "dp_mean_utility": 1687.57,
+      "dp_seconds": 0.9127524001523852,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.1372446772578323,
+      "greedy_mean_utility": 231.61
+    },
+    {
+      "T": 30,
+      "case_id": 28,
+      "dp_mean_utility": 6.152999999999997,
+      "dp_seconds": 0.17457789997570217,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.8602307817324886,
+      "greedy_mean_utility": 5.292999999999999
+    },
+    {
+      "T": 16,
+      "case_id": 29,
+      "dp_mean_utility": 13.52,
+      "dp_seconds": 0.038273199927061796,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.6346153846153847,
+      "greedy_mean_utility": 8.58
+    },
+    {
+      "T": 16,
+      "case_id": 30,
+      "dp_mean_utility": 29.0,
+      "dp_seconds": 0.0435223001986742,
+      "goals": 2,
+      "greedy_efficiency_vs_dp": 0.7834482758620689,
+      "greedy_mean_utility": 22.72
+    },
+    {
+      "T": 16,
+      "case_id": 31,
+      "dp_mean_utility": 56.44,
+      "dp_seconds": 0.050528099993243814,
+      "goals": 4,
+      "greedy_efficiency_vs_dp": 0.8090007087172219,
+      "greedy_mean_utility": 45.66
+    },
+    {
+      "T": 16,
+      "case_id": 32,
+      "dp_mean_utility": 103.84,
+      "dp_seconds": 0.06563959992490709,
+      "goals": 8,
+      "greedy_efficiency_vs_dp": 0.8262711864406779,
+      "greedy_mean_utility": 85.8
+    },
+    {
+      "T": 16,
+      "case_id": 33,
+      "dp_mean_utility": 189.43,
+      "dp_seconds": 0.10219200002029538,
+      "goals": 16,
+      "greedy_efficiency_vs_dp": 0.8587340970279258,
+      "greedy_mean_utility": 162.67
+    },
+    {
+      "T": 10,
+      "case_id": 34,
+      "dp_mean_utility": 0.76,
+      "dp_seconds": 0.0233474001288414,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.7499999999999999,
+      "greedy_mean_utility": 0.57
+    },
+    {
+      "T": 10,
+      "case_id": 35,
+      "dp_mean_utility": 0.51,
+      "dp_seconds": 0.02860249998047948,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.6470588235294118,
+      "greedy_mean_utility": 0.33
+    },
+    {
+      "T": 10,
+      "case_id": 36,
+      "dp_mean_utility": 0.16,
+      "dp_seconds": 0.02428340003825724,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.125,
+      "greedy_mean_utility": 0.02
+    },
+    {
+      "T": 40,
+      "case_id": 37,
+      "dp_mean_utility": 0.78,
+      "dp_seconds": 0.28291069995611906,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.7435897435897435,
+      "greedy_mean_utility": 0.58
+    },
+    {
+      "T": 40,
+      "case_id": 38,
+      "dp_mean_utility": 0.58,
+      "dp_seconds": 0.1679056000430137,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.48275862068965525,
+      "greedy_mean_utility": 0.28
+    },
+    {
+      "T": 40,
+      "case_id": 39,
+      "dp_mean_utility": 0.4,
+      "dp_seconds": 0.3049802000168711,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.19999999999999998,
+      "greedy_mean_utility": 0.08
+    },
+    {
+      "T": 100,
+      "case_id": 40,
+      "dp_mean_utility": 0.57,
+      "dp_seconds": 0.4348863000050187,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.31578947368421056,
+      "greedy_mean_utility": 0.18
+    },
+    {
+      "T": 100,
+      "case_id": 41,
+      "dp_mean_utility": 0.22,
+      "dp_seconds": 1.200522700091824,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.045454545454545456,
+      "greedy_mean_utility": 0.01
+    },
+    {
+      "T": 100,
+      "case_id": 42,
+      "dp_mean_utility": 0.01,
+      "dp_seconds": 0.42387619987130165,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.0,
+      "greedy_mean_utility": 0.0
+    },
+    {
+      "T": 3,
+      "case_id": 43,
+      "dp_mean_utility": 1.038,
+      "dp_seconds": 0.008323799818754196,
+      "goals": 2,
+      "greedy_efficiency_vs_dp": 0.8863198458574184,
+      "greedy_mean_utility": 0.9200000000000004
+    },
+    {
+      "T": 20,
+      "case_id": 44,
+      "dp_mean_utility": 0.865,
+      "dp_seconds": 0.09489040006883442,
+      "goals": 2,
+      "greedy_efficiency_vs_dp": 0.5583815028901733,
+      "greedy_mean_utility": 0.4829999999999999
+    },
+    {
+      "T": 20,
+      "case_id": 45,
+      "dp_mean_utility": 1.193,
+      "dp_seconds": 0.12084760004654527,
+      "goals": 2,
+      "greedy_efficiency_vs_dp": 0.7468566638725902,
+      "greedy_mean_utility": 0.8910000000000001
+    },
+    {
+      "T": 35,
+      "case_id": 46,
+      "dp_mean_utility": 1.445,
+      "dp_seconds": 0.1624505000654608,
+      "goals": 3,
+      "greedy_efficiency_vs_dp": 0.7647058823529411,
+      "greedy_mean_utility": 1.105
+    },
+    {
+      "T": 60,
+      "case_id": 47,
+      "dp_mean_utility": 0.397,
+      "dp_seconds": 0.5715429000556469,
+      "goals": 4,
+      "greedy_efficiency_vs_dp": 0.38287153652392936,
+      "greedy_mean_utility": 0.15199999999999997
+    },
+    {
+      "T": 25,
+      "case_id": 48,
+      "dp_mean_utility": 0.557,
+      "dp_seconds": 0.123995800036937,
+      "goals": 4,
+      "greedy_efficiency_vs_dp": 0.8653500897666068,
+      "greedy_mean_utility": 0.48200000000000004
+    },
+    {
+      "T": 40,
+      "case_id": 49,
+      "dp_mean_utility": 1.73,
+      "dp_seconds": 0.30621990002691746,
+      "goals": 4,
+      "greedy_efficiency_vs_dp": 0.6705202312138728,
+      "greedy_mean_utility": 1.16
+    },
+    {
+      "T": 20,
+      "case_id": 50,
+      "dp_mean_utility": 9.34,
+      "dp_seconds": 0.07428689999505877,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.9550321199143469,
+      "greedy_mean_utility": 8.92
+    },
+    {
+      "T": 20,
+      "case_id": 51,
+      "dp_mean_utility": 7.26,
+      "dp_seconds": 0.1035525999031961,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.7933884297520661,
+      "greedy_mean_utility": 5.76
+    },
+    {
+      "T": 20,
+      "case_id": 52,
+      "dp_mean_utility": 4.62,
+      "dp_seconds": 0.12119420012459159,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.5649350649350648,
+      "greedy_mean_utility": 2.61
+    },
+    {
+      "T": 20,
+      "case_id": 53,
+      "dp_mean_utility": 3.78,
+      "dp_seconds": 0.14582179998978972,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.4470899470899471,
+      "greedy_mean_utility": 1.69
+    },
+    {
+      "T": 60,
+      "case_id": 54,
+      "dp_mean_utility": 40.9,
+      "dp_seconds": 0.5022682000417262,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.2092909535452323,
+      "greedy_mean_utility": 8.56
+    },
+    {
+      "T": 60,
+      "case_id": 55,
+      "dp_mean_utility": 37.31,
+      "dp_seconds": 1.2601311998441815,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.5456982042347895,
+      "greedy_mean_utility": 20.36
+    },
+    {
+      "T": 60,
+      "case_id": 56,
+      "dp_mean_utility": 5048.27,
+      "dp_seconds": 0.9474169998429716,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.5034754480247688,
+      "greedy_mean_utility": 2541.68
+    },
+    {
+      "T": 60,
+      "case_id": 57,
+      "dp_mean_utility": 2508.83,
+      "dp_seconds": 3.3622697999235243,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.7104985192300793,
+      "greedy_mean_utility": 1782.52
+    },
+    {
+      "T": 60,
+      "case_id": 58,
+      "dp_mean_utility": 29.79,
+      "dp_seconds": 3.2146560999099165,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.12722390063779793,
+      "greedy_mean_utility": 3.79
+    },
+    {
+      "T": 60,
+      "case_id": 59,
+      "dp_mean_utility": 3947.43,
+      "dp_seconds": 4.212014999939129,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.11442128169467224,
+      "greedy_mean_utility": 451.67
+    },
+    {
+      "T": 60,
+      "case_id": 60,
+      "dp_mean_utility": 1768.11,
+      "dp_seconds": 3.1760090000461787,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.16562317955330833,
+      "greedy_mean_utility": 292.84
+    },
+    {
+      "T": 30,
+      "case_id": 61,
+      "dp_mean_utility": 5.873999999999998,
+      "dp_seconds": 0.8904699000995606,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.8922369765066396,
+      "greedy_mean_utility": 5.240999999999999
+    },
+    {
+      "T": 16,
+      "case_id": 62,
+      "dp_mean_utility": 14.56,
+      "dp_seconds": 0.14211109979078174,
+      "goals": 1,
+      "greedy_efficiency_vs_dp": 0.625,
+      "greedy_mean_utility": 9.1
+    },
+    {
+      "T": 16,
+      "case_id": 63,
+      "dp_mean_utility": 31.32,
+      "dp_seconds": 0.2143041999079287,
+      "goals": 2,
+      "greedy_efficiency_vs_dp": 0.8275862068965518,
+      "greedy_mean_utility": 25.92
+    },
+    {
+      "T": 16,
+      "case_id": 64,
+      "dp_mean_utility": 60.42,
+      "dp_seconds": 0.17933810013346374,
+      "goals": 4,
+      "greedy_efficiency_vs_dp": 0.8252234359483615,
+      "greedy_mean_utility": 49.86
+    },
+    {
+      "T": 16,
+      "case_id": 65,
+      "dp_mean_utility": 111.86,
+      "dp_seconds": 0.29241979983635247,
+      "goals": 8,
+      "greedy_efficiency_vs_dp": 0.8712676559985696,
+      "greedy_mean_utility": 97.46
+    },
+    {
+      "T": 16,
+      "case_id": 66,
+      "dp_mean_utility": 212.94,
+      "dp_seconds": 0.3810541999991983,
+      "goals": 16,
+      "greedy_efficiency_vs_dp": 0.7943082558467174,
+      "greedy_mean_utility": 169.14
+    }
+  ],
+  "seed": 260502300,
+  "suite_seconds": 48.856822199886665,
+  "z_nodes": 5
+}

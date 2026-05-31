@@ -1,0 +1,3 @@
+case_id,T,goals,calibration_status,calibration_passed,dp_relative_spread,dp_below_greedy,reference_grid_size_requested,reference_grid_size_actual,reference_z_nodes,mc_paths,dp_mean_utility,greedy_mean_utility,greedy_efficiency_vs_dp,dp_value_at_W0,monotonicity_violations,dp_seconds_total
+20,20,10,stable,True,0.016113744075829377,False,151,151,11,300,3.5166666666666666,1.4766666666666666,0.4199052132701422,3.6227380025099754,0,0.7805263996124268
+57,60,60,stable,True,0.0022163657790029386,False,151,270,11,300,2585.3133333333335,1813.2,0.7013463229473151,2523.6414642705836,0,15.740626000100747

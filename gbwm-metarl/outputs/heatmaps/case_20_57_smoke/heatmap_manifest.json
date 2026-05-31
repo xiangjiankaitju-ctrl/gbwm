@@ -1,0 +1,18 @@
+{
+  "case_ids": [
+    20,
+    57
+  ],
+  "files": [
+    "C:\\Users\\xiangjiankai\\Desktop\\GBWM\\gbwm-metarl\\outputs\\heatmaps\\case_20_57_smoke\\case_20_heatmap_data.csv",
+    "C:\\Users\\xiangjiankai\\Desktop\\GBWM\\gbwm-metarl\\outputs\\heatmaps\\case_20_57_smoke\\case_57_heatmap_data.csv"
+  ],
+  "grid_size_requested": 51,
+  "policies": [
+    "dp",
+    "greedy"
+  ],
+  "policy_note": "greedy is a placeholder comparator, not trained MetaRL; add PPO policy after torch integration.",
+  "seconds": 1.4680981000419706,
+  "z_nodes": 5
+}

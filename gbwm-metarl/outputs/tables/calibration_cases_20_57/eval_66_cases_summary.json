@@ -1,0 +1,163 @@
+{
+  "calibration_configs": [
+    {
+      "grid_size": 51,
+      "z_nodes": 5
+    },
+    {
+      "grid_size": 91,
+      "z_nodes": 7
+    },
+    {
+      "grid_size": 151,
+      "z_nodes": 11
+    }
+  ],
+  "case_ids": [
+    20,
+    57
+  ],
+  "detail_rows": [
+    {
+      "T": 20,
+      "case_id": 20,
+      "dp_mean_utility": 3.4633333333333334,
+      "dp_seconds": 0.12091169995255768,
+      "dp_value_at_W0": 3.50513212081343,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.42637151106833493,
+      "greedy_mean_utility": 1.4766666666666666,
+      "mc_paths": 300,
+      "monotonicity_violations": 0,
+      "wealth_grid_size_actual": 51,
+      "wealth_grid_size_requested": 51,
+      "z_nodes": 5
+    },
+    {
+      "T": 20,
+      "case_id": 20,
+      "dp_mean_utility": 3.46,
+      "dp_seconds": 0.21758069982752204,
+      "dp_value_at_W0": 3.541649577936128,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.42678227360308285,
+      "greedy_mean_utility": 1.4766666666666666,
+      "mc_paths": 300,
+      "monotonicity_violations": 0,
+      "wealth_grid_size_actual": 92,
+      "wealth_grid_size_requested": 91,
+      "z_nodes": 7
+    },
+    {
+      "T": 20,
+      "case_id": 20,
+      "dp_mean_utility": 3.5166666666666666,
+      "dp_seconds": 0.44203399983234704,
+      "dp_value_at_W0": 3.6227380025099754,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.4199052132701422,
+      "greedy_mean_utility": 1.4766666666666666,
+      "mc_paths": 300,
+      "monotonicity_violations": 0,
+      "wealth_grid_size_actual": 151,
+      "wealth_grid_size_requested": 151,
+      "z_nodes": 11
+    },
+    {
+      "T": 60,
+      "case_id": 57,
+      "dp_mean_utility": 2579.5833333333335,
+      "dp_seconds": 1.185479200212285,
+      "dp_value_at_W0": 2441.6553284672045,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.7029042157971248,
+      "greedy_mean_utility": 1813.2,
+      "mc_paths": 300,
+      "monotonicity_violations": 0,
+      "wealth_grid_size_actual": 170,
+      "wealth_grid_size_requested": 51,
+      "z_nodes": 5
+    },
+    {
+      "T": 60,
+      "case_id": 57,
+      "dp_mean_utility": 2580.67,
+      "dp_seconds": 4.486851899884641,
+      "dp_value_at_W0": 2499.003368629196,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.7026082373957151,
+      "greedy_mean_utility": 1813.2,
+      "mc_paths": 300,
+      "monotonicity_violations": 0,
+      "wealth_grid_size_actual": 210,
+      "wealth_grid_size_requested": 91,
+      "z_nodes": 7
+    },
+    {
+      "T": 60,
+      "case_id": 57,
+      "dp_mean_utility": 2585.3133333333335,
+      "dp_seconds": 10.06829490000382,
+      "dp_value_at_W0": 2523.6414642705836,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.7013463229473151,
+      "greedy_mean_utility": 1813.2,
+      "mc_paths": 300,
+      "monotonicity_violations": 0,
+      "wealth_grid_size_actual": 270,
+      "wealth_grid_size_requested": 151,
+      "z_nodes": 11
+    }
+  ],
+  "evaluated_cases": 2,
+  "high_threshold": 0.15,
+  "mc_paths": 300,
+  "mild_threshold": 0.07,
+  "mode": "calibration",
+  "output_dir": "C:\\Users\\xiangjiankai\\Desktop\\GBWM\\gbwm-metarl\\outputs\\tables\\calibration_cases_20_57",
+  "passed_cases": 2,
+  "passed_greedy_efficiency_mean": 0.5606257681087287,
+  "rows": [
+    {
+      "T": 20,
+      "calibration_passed": true,
+      "calibration_status": "stable",
+      "case_id": 20,
+      "dp_below_greedy": false,
+      "dp_mean_utility": 3.5166666666666666,
+      "dp_relative_spread": 0.016113744075829377,
+      "dp_seconds_total": 0.7805263996124268,
+      "dp_value_at_W0": 3.6227380025099754,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.4199052132701422,
+      "greedy_mean_utility": 1.4766666666666666,
+      "mc_paths": 300,
+      "monotonicity_violations": 0,
+      "reference_grid_size_actual": 151,
+      "reference_grid_size_requested": 151,
+      "reference_z_nodes": 11
+    },
+    {
+      "T": 60,
+      "calibration_passed": true,
+      "calibration_status": "stable",
+      "case_id": 57,
+      "dp_below_greedy": false,
+      "dp_mean_utility": 2585.3133333333335,
+      "dp_relative_spread": 0.0022163657790029386,
+      "dp_seconds_total": 15.740626000100747,
+      "dp_value_at_W0": 2523.6414642705836,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.7013463229473151,
+      "greedy_mean_utility": 1813.2,
+      "mc_paths": 300,
+      "monotonicity_violations": 0,
+      "reference_grid_size_actual": 270,
+      "reference_grid_size_requested": 151,
+      "reference_z_nodes": 11
+    }
+  ],
+  "seed": 260502300,
+  "stable_threshold": 0.03,
+  "suite_seconds": 17.63680709991604
+}

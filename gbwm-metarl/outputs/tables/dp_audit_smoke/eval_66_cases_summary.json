@@ -1,0 +1,129 @@
+{
+  "calibration_configs": [
+    {
+      "grid_size": 51,
+      "z_nodes": 5
+    },
+    {
+      "grid_size": 91,
+      "z_nodes": 7
+    }
+  ],
+  "case_ids": [
+    20,
+    57
+  ],
+  "detail_rows": [
+    {
+      "T": 20,
+      "case_id": 20,
+      "dp_mean_utility": 3.56,
+      "dp_seconds": 0.12608269997872412,
+      "dp_value_at_W0": 3.50513212081343,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.42134831460674155,
+      "greedy_mean_utility": 1.5,
+      "mc_paths": 50,
+      "monotonicity_violations": 0,
+      "wealth_grid_size_actual": 51,
+      "wealth_grid_size_requested": 51,
+      "z_nodes": 5
+    },
+    {
+      "T": 20,
+      "case_id": 20,
+      "dp_mean_utility": 3.52,
+      "dp_seconds": 0.24477349990047514,
+      "dp_value_at_W0": 3.541649577936128,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.42613636363636365,
+      "greedy_mean_utility": 1.5,
+      "mc_paths": 50,
+      "monotonicity_violations": 0,
+      "wealth_grid_size_actual": 92,
+      "wealth_grid_size_requested": 91,
+      "z_nodes": 7
+    },
+    {
+      "T": 60,
+      "case_id": 57,
+      "dp_mean_utility": 2239.94,
+      "dp_seconds": 1.407795999897644,
+      "dp_value_at_W0": 2441.6553284672045,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.7759225693545363,
+      "greedy_mean_utility": 1738.02,
+      "mc_paths": 50,
+      "monotonicity_violations": 0,
+      "wealth_grid_size_actual": 170,
+      "wealth_grid_size_requested": 51,
+      "z_nodes": 5
+    },
+    {
+      "T": 60,
+      "case_id": 57,
+      "dp_mean_utility": 2238.74,
+      "dp_seconds": 3.4938817999791354,
+      "dp_value_at_W0": 2499.003368629196,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.776338476107096,
+      "greedy_mean_utility": 1738.02,
+      "mc_paths": 50,
+      "monotonicity_violations": 0,
+      "wealth_grid_size_actual": 210,
+      "wealth_grid_size_requested": 91,
+      "z_nodes": 7
+    }
+  ],
+  "evaluated_cases": 2,
+  "high_threshold": 0.15,
+  "mc_paths": 50,
+  "mild_threshold": 0.07,
+  "mode": "calibration",
+  "output_dir": "C:\\Users\\xiangjiankai\\Desktop\\GBWM\\gbwm-metarl\\outputs\\tables\\dp_audit_smoke",
+  "passed_cases": 2,
+  "passed_greedy_efficiency_mean": 0.6012374198717299,
+  "rows": [
+    {
+      "T": 20,
+      "calibration_passed": true,
+      "calibration_status": "stable",
+      "case_id": 20,
+      "dp_below_greedy": false,
+      "dp_mean_utility": 3.52,
+      "dp_relative_spread": 0.011235955056179785,
+      "dp_seconds_total": 0.37085619987919927,
+      "dp_value_at_W0": 3.541649577936128,
+      "goals": 10,
+      "greedy_efficiency_vs_dp": 0.42613636363636365,
+      "greedy_mean_utility": 1.5,
+      "mc_paths": 50,
+      "monotonicity_violations": 0,
+      "reference_grid_size_actual": 92,
+      "reference_grid_size_requested": 91,
+      "reference_z_nodes": 7
+    },
+    {
+      "T": 60,
+      "calibration_passed": true,
+      "calibration_status": "stable",
+      "case_id": 57,
+      "dp_below_greedy": false,
+      "dp_mean_utility": 2238.74,
+      "dp_relative_spread": 0.000535728635588575,
+      "dp_seconds_total": 4.901677799876779,
+      "dp_value_at_W0": 2499.003368629196,
+      "goals": 60,
+      "greedy_efficiency_vs_dp": 0.776338476107096,
+      "greedy_mean_utility": 1738.02,
+      "mc_paths": 50,
+      "monotonicity_violations": 0,
+      "reference_grid_size_actual": 210,
+      "reference_grid_size_requested": 91,
+      "reference_z_nodes": 7
+    }
+  ],
+  "seed": 260502300,
+  "stable_threshold": 0.03,
+  "suite_seconds": 5.391518899938092
+}

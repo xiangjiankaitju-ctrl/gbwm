@@ -1,0 +1,10 @@
+torch
+numpy
+pandas
+scipy
+numba
+tqdm
+matplotlib
+seaborn
+pytest
+pyyaml
